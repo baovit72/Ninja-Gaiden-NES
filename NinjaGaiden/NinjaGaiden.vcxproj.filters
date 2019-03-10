@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Ninja">
+      <UniqueIdentifier>{bbce544b-ba41-4dce-bd3e-4f62cd284a27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameComponents">
+      <UniqueIdentifier>{fec4c2fb-ac1b-4785-b7fd-58d7d2fa5734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ninja\States">
+      <UniqueIdentifier>{d05c021e-6a04-459c-abdd-a3794d0f253c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameComponents\Animation.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\Debug.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\Game.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\GameObject.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\Graphics.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\Keyboard.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\Sprite.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\Knife.cpp">
+      <Filter>Source Files\Ninja</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\Simon.cpp">
+      <Filter>Source Files\Ninja</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\Subweapon.cpp">
+      <Filter>Source Files\Ninja</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\ThrowingState.cpp">
+      <Filter>Source Files\Ninja</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\Whip.cpp">
+      <Filter>Source Files\Ninja</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\AttackingState.cpp">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\CrouchingState.cpp">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\IdleState.cpp">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\JumpingState.cpp">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\State.cpp">
+      <Filter>Source Files\Ninja</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\WalkingState.cpp">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\TiledMap.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameComponents\Animation.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Constants.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Debug.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Game.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\GameObject.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Graphics.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Keyboard.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\resource.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Sprite.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\Knife.h">
+      <Filter>Source Files\Ninja</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\Simon.h">
+      <Filter>Source Files\Ninja</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\Subweapon.h">
+      <Filter>Source Files\Ninja</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\ThrowingState.h">
+      <Filter>Source Files\Ninja</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\Whip.h">
+      <Filter>Source Files\Ninja</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\AttackingState.h">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\CrouchingState.h">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\IdleState.h">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\JumpingState.h">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\State.h">
+      <Filter>Source Files\Ninja</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\WalkingState.h">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\TiledMap.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
