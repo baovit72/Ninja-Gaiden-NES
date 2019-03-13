@@ -65,6 +65,7 @@ public:
 	bool IsGrounded() { return isGrounded; }
 	bool IsCrouching() { return isCrouching; }
 	bool IsLeft() { return isLeft; }
+	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
 
 	vector<Animation *> GetAnimationsList() { return animations; }
 	//Các hàm hành động nhân vật

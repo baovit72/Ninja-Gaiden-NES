@@ -100,72 +100,72 @@ void Keyboard::Poll_Keyboard()
 }
 void Keyboard::UpdateKeyStates()
 {
-	Simon * simon = Game::GetInstance()->GetSimon();
+	Ninja * ninja = Game::GetInstance()->GetNinja();
 
 	//Nếu đang nhấn phím phải thì mario đi phải
 	if (IsKeyDown(DIK_RIGHT))
 	{
-		if (!IsKeyDown(DIK_LEFT) && !simon->IsAttacking() && simon->IsGrounded())
+		if (!IsKeyDown(DIK_LEFT) && !ninja->IsAttacking() && ninja->IsGrounded())
 		{
-			simon->TurnRight();
+			ninja->TurnRight();
 			if (!IsKeyDown(DIK_LCONTROL))
 			{
-				simon->Idle();
-				simon->Walk();
+				ninja->Idle();
+				ninja->Walk();
 			}
 			else
-				simon->Crouch();
+				ninja->Crouch();
 		}
 		else if (!IsKeyDown(DIK_LCONTROL))
-			simon->Idle();
+			ninja->Idle();
 	}
 	//Nếu đang nhấn phím trái thì mario đi trái
 	else if (IsKeyDown(DIK_LEFT))
 	{
-		if (!IsKeyDown(DIK_RIGHT) && !simon->IsAttacking() && simon->IsGrounded())
+		if (!IsKeyDown(DIK_RIGHT) && !ninja->IsAttacking() && ninja->IsGrounded())
 		{
-			simon->TurnLeft();
+			ninja->TurnLeft();
 			if (!IsKeyDown(DIK_LCONTROL))
 			{
-				simon->Idle();
-				simon->Walk();
+				ninja->Idle();
+				ninja->Walk();
 			}
 			else
-				simon->Crouch();
+				ninja->Crouch();
 		}
 		else if (!IsKeyDown(DIK_LCONTROL))
-			simon->Idle();
+			ninja->Idle();
 	}
 	else if (IsKeyDown(DIK_LCONTROL))
-		simon->Crouch();
+		ninja->Crouch();
 	//Nếu không thì mario ở trạng thái idle
 	else
-		simon->Idle();
+		ninja->Idle();
 }
 void Keyboard::OnKeyDown(int KeyCode)
 {
-	Simon * simon = Game::GetInstance()->GetSimon();
+	Ninja * ninja = Game::GetInstance()->GetNinja();
 	DebugOut(L"[INFO] KeyDown: %d\n", KeyCode);
 	switch (KeyCode)
 	{
 	//Nếu là phím Space thì đổi mario sang trạng thái nhảy
 	case DIK_SPACE:
-		simon->Jump();
+		ninja->Jump();
 		break;
 	case DIK_S:
-		simon->Attack();
+		ninja->Attack();
 		break;
 	case DIK_D:
-		simon->Throw();
+		ninja->Throw();
 		break;
 	case DIK_1:
-		simon->SetWhip(WHIP_NORMAL);
+		ninja->SetWhip(WHIP_NORMAL);
 		break;
 	case DIK_2:
-		simon->SetWhip(WHIP_SHORT_CHAIN);
+		ninja->SetWhip(WHIP_SHORT_CHAIN);
 		break;
 	case DIK_3:
-		simon->SetWhip(WHIP_LONG_CHAIN);
+		ninja->SetWhip(WHIP_LONG_CHAIN);
 		break;
 	}
 }

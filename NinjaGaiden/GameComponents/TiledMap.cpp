@@ -4,6 +4,7 @@
 TiledMap::TiledMap(LPCWSTR filePath)
 {
 	infoLocation = filePath;
+	
 	LoadMap(filePath);
 }
 //Lấy dữ liệu đọc chuyển thành dòng trong ma trận
@@ -81,7 +82,8 @@ void TiledMap::LoadTileSet(LPCWSTR tilesLocation)
 	}
 	this->tileSetWidth = info.Width / TILES_WIDTH_PER_TILE;
 	this->tileSetHeight = info.Height / TILES_HEIGHT_PER_TILE;
-
+	this->mapWidth = info.Width;
+	this->mapHeight = info.Height;
 	tiles[0] = 0;
 	for (int i = 0; i < this->tileSetHeight * this->tileSetWidth; i++)
 	{
@@ -104,11 +106,11 @@ TiledMap::~TiledMap()
 
 int TiledMap::GetWidth()
 {
-	return TILES_WIDTH_PER_TILE;
+	return mapWidth;
 }
 int TiledMap::GetHeight()
 {
-	return TILES_HEIGHT_PER_TILE;
+	return mapHeight;
 }
 int TiledMap::GetTileWidth()
 {
@@ -131,7 +133,7 @@ void TiledMap::Render()
 				spriteData.width = TILES_WIDTH_PER_TILE;
 				spriteData.height = TILES_HEIGHT_PER_TILE;
 				spriteData.x = j * TILES_WIDTH_PER_TILE;
-				spriteData.y = i * TILES_HEIGHT_PER_TILE;
+				spriteData.y = (matrix.size() - i) * TILES_HEIGHT_PER_TILE;
 				spriteData.scale = 1;
 				spriteData.angle = 0;
 				spriteData.isLeft = true;

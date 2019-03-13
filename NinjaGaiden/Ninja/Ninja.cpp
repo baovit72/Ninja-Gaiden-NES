@@ -29,7 +29,7 @@ Ninja * Ninja::GetInstance()
 void Ninja::LoadResources()
 {
 	// 0
-	Animation * anim = new Animation(100);
+	Animation * anim = new Animation(50);
 	for (int i = 0; i < 1; i++)
 	{
 		RECT rect;
@@ -44,7 +44,7 @@ void Ninja::LoadResources()
 	animations.push_back(anim);
 
 	// 1
-	anim = new Animation(100);
+	anim = new Animation(50);
 	for (int i = 0; i < 4; i++)
 	{
 		RECT rect;
@@ -59,38 +59,66 @@ void Ninja::LoadResources()
 	animations.push_back(anim);
 
 	// 2
-	anim = new Animation(150);
-	for (int i = 5; i < 8; i++)
+	anim = new Animation(50);
+	for (int i = 10; i < 15; i++)
 	{
-		RECT rect;
-		rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
-		rect.right = rect.left + NINJA_SPRITE_WIDTH;
-		rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
-		rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+		if (i == 10)
+		{
+			RECT rect;
+			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
+			rect.right = rect.left + NINJA_SPRITE_WIDTH;
+			rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
+			rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
 
-		anim->AddFrame(sprite);
+			anim->AddFrame(sprite);
+		}
+		else if (i == 11 || i == 13)
+		{
+			RECT rect;
+			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
+			rect.right = rect.left + NINJA_SPRITE_WIDTH * 2;
+			rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
+			rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+
+			anim->AddFrame(sprite);
+		}
 	}
 	animations.push_back(anim);
 
 	// 3
-	anim = new Animation(150);
-	for (int i = 15; i < 18; i++)
+	anim = new Animation(50);
+	for (int i = 25; i < 30; i++)
 	{
-		RECT rect;
-		rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
-		rect.right = rect.left + NINJA_SPRITE_WIDTH;
-		rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
-		rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
-		Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+		if (i == 25)
+		{
+			RECT rect;
+			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
+			rect.right = rect.left + NINJA_SPRITE_WIDTH;
+			rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
+			rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
 
-		anim->AddFrame(sprite);
+			anim->AddFrame(sprite);
+		}
+		else if (i == 26 || i == 28)
+		{
+			RECT rect;
+			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
+			rect.right = rect.left + NINJA_SPRITE_WIDTH * 2;
+			rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
+			rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+			Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+
+			anim->AddFrame(sprite);
+		}
 	}
 	animations.push_back(anim);
 
 	// 4
-	anim = new Animation(100);
-	for (int i = 4; i < 5; i++)
+	anim = new Animation(50);
+	for (int i = 6; i < 10; i++)
 	{
 		RECT rect;
 		rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
@@ -104,8 +132,8 @@ void Ninja::LoadResources()
 	animations.push_back(anim);
 
 	// 5
-	anim = new Animation(100);
-	for (int i = 4; i < 5; i++)
+	anim = new Animation(50);
+	for (int i = 24; i < 25; i++)
 	{
 		RECT rect;
 		rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;

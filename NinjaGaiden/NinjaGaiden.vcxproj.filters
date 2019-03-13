@@ -48,9 +48,6 @@
     <ClCompile Include="Ninja\Knife.cpp">
       <Filter>Source Files\Ninja</Filter>
     </ClCompile>
-    <ClCompile Include="Ninja\Simon.cpp">
-      <Filter>Source Files\Ninja</Filter>
-    </ClCompile>
     <ClCompile Include="Ninja\Subweapon.cpp">
       <Filter>Source Files\Ninja</Filter>
     </ClCompile>
@@ -84,6 +81,12 @@
     <ClCompile Include="GameComponents\TiledMap.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
+    <ClCompile Include="GameComponents\Viewport.cpp">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\Ninja.cpp">
+      <Filter>Source Files\Ninja</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Animation.h">
@@ -116,9 +119,6 @@
     <ClInclude Include="Ninja\Knife.h">
       <Filter>Source Files\Ninja</Filter>
     </ClInclude>
-    <ClInclude Include="Ninja\Simon.h">
-      <Filter>Source Files\Ninja</Filter>
-    </ClInclude>
     <ClInclude Include="Ninja\Subweapon.h">
       <Filter>Source Files\Ninja</Filter>
     </ClInclude>
@@ -148,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="GameComponents\TiledMap.h">
       <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\Viewport.h">
+      <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\Ninja.h">
+      <Filter>Source Files\Ninja</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

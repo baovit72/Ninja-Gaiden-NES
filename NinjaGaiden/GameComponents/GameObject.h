@@ -18,6 +18,7 @@ protected:
 	float vy;
 
 	bool isLeft;
+	bool isFlipped;
 public:
 	//Hàm đặt vị trí
 	void SetPositionX(float x) { this->x = x; }

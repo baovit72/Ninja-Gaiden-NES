@@ -26,13 +26,14 @@
     <ClCompile Include="GameComponents\Graphics.cpp" />
     <ClCompile Include="GameComponents\Keyboard.cpp" />
     <ClCompile Include="GameComponents\Sprite.cpp" />
+    <ClCompile Include="GameComponents\Viewport.cpp" />
     <ClCompile Include="Ninja\AttackingState.cpp" />
     <ClCompile Include="Ninja\CrouchingState.cpp" />
     <ClCompile Include="Ninja\IdleState.cpp" />
     <ClCompile Include="Ninja\JumpingState.cpp" />
     <ClCompile Include="Ninja\Knife.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Ninja\Simon.cpp" />
+    <ClCompile Include="Ninja\Ninja.cpp" />
     <ClCompile Include="Ninja\State.cpp" />
     <ClCompile Include="Ninja\Subweapon.cpp" />
     <ClCompile Include="Ninja\ThrowingState.cpp" />
@@ -55,13 +56,14 @@
     <ClInclude Include="Ninja\IdleState.h" />
     <ClInclude Include="Ninja\JumpingState.h" />
     <ClInclude Include="Ninja\Knife.h" />
-    <ClInclude Include="Ninja\Simon.h" />
+    <ClInclude Include="Ninja\Ninja.h" />
     <ClInclude Include="Ninja\State.h" />
     <ClInclude Include="Ninja\Subweapon.h" />
     <ClInclude Include="Ninja\ThrowingState.h" />
     <ClInclude Include="Ninja\WalkingState.h" />
     <ClInclude Include="Ninja\Whip.h" />
     <ClInclude Include="GameComponents\TiledMap.h" />
+    <ClInclude Include="GameComponents\Viewport.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -115,11 +117,11 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;C:\Users\Sang\Documents\Homework\Game\NinjaGaiden\NinjaGaiden\Ninja;C:\Users\Sang\Documents\Homework\Game\NinjaGaiden\NinjaGaiden\GameComponents;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;.\GameComponents;.\Ninja;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;C:\Users\Sang\Documents\Homework\Game\NinjaGaiden\NinjaGaiden\Ninja;C:\Users\Sang\Documents\Homework\Game\NinjaGaiden\NinjaGaiden\GameComponents;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;.\GameComponents;.\Ninja;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

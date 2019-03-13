@@ -1,11 +1,11 @@
 #include "AttackingState.h"
 
-AttackingState::AttackingState(Simon * simon)
+AttackingState::AttackingState(Ninja * ninja)
 {
-	this->simon = simon;
-	simon->GetAnimationsList()[SIMON_ANI_STANDING_ATTACKING]->Reset();
-	simon->GetAnimationsList()[SIMON_ANI_CROUCHING_ATTACKING]->Reset();
-	simon->GetWhip()->ResetAnim();
+	this->ninja = ninja;
+	ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Reset();
+	ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Reset();
+	ninja->GetWhip()->ResetAnim();
 }
 void AttackingState::Idle()
 {
@@ -41,38 +41,39 @@ void AttackingState::Render()
 	State::Render();
 
 	SpriteData spriteData;
-	spriteData.width = SIMON_SPRITE_WIDTH;
-	spriteData.height = SIMON_SPRITE_HEIGHT;
-	spriteData.x = simon->GetPositionX();
-	spriteData.y = simon->GetPositionY();
+	spriteData.width = NINJA_SPRITE_WIDTH;
+	spriteData.height = NINJA_SPRITE_HEIGHT;
+	spriteData.x = ninja->GetPositionX();
+	spriteData.y = ninja->GetPositionY();
 	spriteData.scale = 1;
 	spriteData.angle = 0;
-	spriteData.isLeft = simon->IsLeft();
+	spriteData.isLeft = ninja->IsLeft();
+	spriteData.isFlipped = ninja->IsFlipped();
 
-	simon->GetWhip()->SetPosition(simon->GetPositionX(), simon->GetPositionY(), simon->IsCrouching());
-	if (simon->IsCrouching())
+	ninja->GetWhip()->SetPosition(ninja->GetPositionX(), ninja->GetPositionY(), ninja->IsCrouching());
+	if (ninja->IsCrouching())
 	{
-		simon->GetAnimationsList()[SIMON_ANI_CROUCHING_ATTACKING]->Render(spriteData);
-		simon->GetWhip()->Render(spriteData);
+		ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Render(spriteData);
+		//ninja->GetWhip()->Render(spriteData);
 
-		if (simon->GetAnimationsList()[SIMON_ANI_CROUCHING_ATTACKING]->IsDone())
+		if (ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->IsDone())
 		{
-			simon->GetAnimationsList()[SIMON_ANI_CROUCHING_ATTACKING]->Reset();
-			simon->GetWhip()->ResetAnim();
-			simon->SetIsCrouching(true);
-			simon->SetState(simon->GetCrouchingState());
+			ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Reset();
+			ninja->GetWhip()->ResetAnim();
+			ninja->SetIsCrouching(true);
+			ninja->SetState(ninja->GetCrouchingState());
 		}
 	}
 	else
 	{
-		simon->GetAnimationsList()[SIMON_ANI_STANDING_ATTACKING]->Render(spriteData);
-		simon->GetWhip()->Render(spriteData);
+		ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Render(spriteData);
+		//ninja->GetWhip()->Render(spriteData);
 
-		if (simon->GetAnimationsList()[SIMON_ANI_STANDING_ATTACKING]->IsDone())
+		if (ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->IsDone())
 		{
-			simon->GetAnimationsList()[SIMON_ANI_STANDING_ATTACKING]->Reset();
-			simon->GetWhip()->ResetAnim();
-			simon->SetState(simon->GetIdleState());
+			ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Reset();
+			ninja->GetWhip()->ResetAnim();
+			ninja->SetState(ninja->GetIdleState());
 		}
 	}
 }

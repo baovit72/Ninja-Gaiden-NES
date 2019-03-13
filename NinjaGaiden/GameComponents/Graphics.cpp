@@ -2,7 +2,7 @@
 #include "Debug.h"
 
 Graphics * Graphics::__instance = NULL;
-
+Viewport * Graphics::viewport = NULL;
 //Khởi tạo Graphics chính
 void Graphics::Init(HWND hWnd)
 {
@@ -45,6 +45,8 @@ void Graphics::Init(HWND hWnd)
 
 	//Khởi tạo sprite handler
 	D3DXCreateSprite(d3ddv, &spriteHandler);
+
+	viewport = Viewport::GetInstance();
 	//In ra khởi tạo Graphics thành công
 	OutputDebugString(L"[INFO] InitGraphics done;\n");
 }
@@ -77,8 +79,8 @@ HRESULT Graphics::LoadTexture(LPCWSTR filePath, D3DCOLOR transColor, LPDIRECT3DT
 		0,
 		D3DFMT_UNKNOWN,
 		D3DPOOL_DEFAULT,
-		D3DX_DEFAULT,
-		D3DX_DEFAULT,
+		D3DX_FILTER_NONE,
+		D3DX_FILTER_NONE,
 		transColor,
 		&info,
 		NULL,
@@ -98,10 +100,11 @@ void Graphics::Draw(Sprite * sprite, D3DCOLOR color)
 {
 	if (sprite->GetTexture() == NULL)
 		return;
-
+	
 	D3DXVECTOR2 center = sprite->GetCenter();
-	D3DXVECTOR2 scaling = sprite->GetScaling();
 	D3DXVECTOR2 translate = sprite->GetTranslate();
+	D3DXVECTOR2 scaling = sprite->GetScaling();
+	viewport->SetRenderData(center, translate, scaling);
 
 	D3DXMATRIX matrix;
 	D3DXMatrixTransformation2D(

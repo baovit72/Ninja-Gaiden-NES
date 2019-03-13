@@ -1,11 +1,11 @@
 #pragma once
 #include "d3d9.h"
 
-class Simon;
+class Ninja;
 class State
 {
 protected:
-	Simon * simon;
+	Ninja * ninja;
 public:
 	virtual void Idle() = 0;
 	virtual void Attack() = 0;

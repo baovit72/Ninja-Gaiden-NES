@@ -11,7 +11,8 @@ struct SpriteData {
 	float y;
 	float scale = 1;
 	float angle = 0;
-	bool isLeft = true;
+	bool isLeft = false;
+	bool isFlipped = false;
 };
 class Sprite
 {

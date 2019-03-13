@@ -1,5 +1,5 @@
 ﻿#include "Whip.h"
-#include "Simon.h"
+#include "Ninja.h"
 
 vector<Animation *> Whip::animations = vector<Animation *>();
 Whip::Whip()
@@ -16,8 +16,8 @@ void Whip::LoadResources()
 		RECT rect;
 		rect.left = (i % WHIP_TEXTURE_COLUMNS) * WHIP_SPRITE_WIDTH;
 		rect.right = rect.left + WHIP_SPRITE_WIDTH;
-		rect.top = (i / WHIP_TEXTURE_COLUMNS) * WHIP_SPRITE_HEIGHT;
-		rect.bottom = rect.top + WHIP_SPRITE_HEIGHT;
+		rect.bottom = (i / WHIP_TEXTURE_COLUMNS) * WHIP_SPRITE_HEIGHT;
+		rect.top = rect.bottom + WHIP_SPRITE_HEIGHT;
 		Sprite * sprite = new Sprite(WHIP_TEXTURE_LOCATION, rect, WHIP_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
@@ -31,8 +31,8 @@ void Whip::LoadResources()
 		RECT rect;
 		rect.left = (i % WHIP_TEXTURE_COLUMNS) * WHIP_SPRITE_WIDTH;
 		rect.right = rect.left + WHIP_SPRITE_WIDTH;
-		rect.top = (i / WHIP_TEXTURE_COLUMNS) * WHIP_SPRITE_HEIGHT;
-		rect.bottom = rect.top + WHIP_SPRITE_HEIGHT;
+		rect.bottom = (i / WHIP_TEXTURE_COLUMNS) * WHIP_SPRITE_HEIGHT;
+		rect.top = rect.bottom + WHIP_SPRITE_HEIGHT;
 		Sprite * sprite = new Sprite(WHIP_TEXTURE_LOCATION, rect, WHIP_TEXTURE_TRANS_COLOR);
 
 		anim->AddFrame(sprite);
@@ -48,8 +48,8 @@ void Whip::LoadResources()
 			RECT rect;
 			rect.left = (i % WHIP_TEXTURE_COLUMNS) * WHIP_SPRITE_WIDTH;
 			rect.right = rect.left + WHIP_SPRITE_WIDTH;
-			rect.top = (i / WHIP_TEXTURE_COLUMNS) * WHIP_SPRITE_HEIGHT;
-			rect.bottom = rect.top + WHIP_SPRITE_HEIGHT;
+			rect.bottom = (i / WHIP_TEXTURE_COLUMNS) * WHIP_SPRITE_HEIGHT;
+			rect.top = rect.bottom + WHIP_SPRITE_HEIGHT;
 			Sprite * sprite = new Sprite(WHIP_TEXTURE_LOCATION, rect, WHIP_TEXTURE_TRANS_COLOR);
 
 			anim->AddFrame(sprite);

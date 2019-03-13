@@ -35,10 +35,10 @@ void Sprite::SetData(SpriteData spriteData)
 	scale = spriteData.scale;
 	angle = spriteData.angle;
 
-	if (spriteData.isLeft)
-		flipHorizontal = false;
-	else
+	if (spriteData.isFlipped)
 		flipHorizontal = true;
+	else
+		flipHorizontal = false;
 }
 void Sprite::SetRect(RECT rect)
 {

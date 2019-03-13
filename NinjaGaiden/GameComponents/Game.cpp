@@ -40,16 +40,22 @@ HWND Game::CreateGameWindow(HINSTANCE hInstance, int ScreenWidth, int ScreenHeig
 	wc.hIconSm = NULL;
 	//Đăng kí lớp cửa sổ
 	RegisterClassEx(&wc);
+	DWORD wflags = WS_OVERLAPPEDWINDOW;
+	RECT rect;
+	rect.left = rect.top = 0;
+	rect.right = ScreenWidth;
+	rect.bottom = ScreenHeight;
+	AdjustWindowRect(&rect, wflags, false);
 	//Tạo cửa sổ
 	HWND hWnd =
 		CreateWindow(
 			WINDOW_CLASS_NAME,
 			MAIN_WINDOW_TITLE,
-			WS_OVERLAPPEDWINDOW, // WS_EX_TOPMOST | WS_VISIBLE | WS_POPUP,
+			wflags, // WS_EX_TOPMOST | WS_VISIBLE | WS_POPUP,
 			CW_USEDEFAULT,
 			CW_USEDEFAULT,
-			ScreenWidth,
-			ScreenHeight,
+			rect.right - rect.left,
+			rect.bottom - rect.top,
 			NULL,
 			NULL,
 			hInstance,
@@ -69,16 +75,19 @@ HWND Game::CreateGameWindow(HINSTANCE hInstance, int ScreenWidth, int ScreenHeig
 }
 void Game::LoadResources()
 {
-	if (simon == NULL) 
-		simon = Simon::GetInstance();
+	if (ninja == NULL) 
+		ninja = Ninja::GetInstance();
 	if (tiledMap == NULL)
 		tiledMap = new TiledMap(TILES_MATRIX);
+	if (viewport == NULL)
+		viewport = Viewport::GetInstance();
 }
 //Xử lí
 void Game::Update(DWORD dt)
 {
 	keyboard->Update();
-	simon->Update(dt);
+	ninja->Update(dt);
+	viewport->Update(dt);
 }
 void Game::Render()
 {
@@ -95,7 +104,7 @@ void Game::Render()
 		spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
 		tiledMap->Render();
-		//simon->Render();
+		ninja->Render();
 
 		//Kết thúc xử lí sprite
 		spriteHandler->End();
@@ -158,9 +167,9 @@ Game::~Game()
 {
 
 }
-Simon * Game::GetSimon()
+Ninja * Game::GetNinja()
 {
-	return simon;
+	return ninja;
 }
 //Hàm lấy đối tượng
 Game *Game::GetInstance()

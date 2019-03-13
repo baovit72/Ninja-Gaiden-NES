@@ -1,18 +1,18 @@
 #include "CrouchingState.h"
 
 
-CrouchingState::CrouchingState(Simon * simon)
+CrouchingState::CrouchingState(Ninja * ninja)
 {
-	this->simon = simon;
+	this->ninja = ninja;
 }
 void CrouchingState::Idle()
 {
-	simon->SetIsCrouching(false);
-	simon->SetState(simon->GetIdleState());
+	ninja->SetIsCrouching(false);
+	ninja->SetState(ninja->GetIdleState());
 }
 void CrouchingState::Attack()
 {
-	simon->SetState(simon->GetAttackingState());
+	ninja->SetState(ninja->GetAttackingState());
 }
 void CrouchingState::Walk()
 {
@@ -20,7 +20,7 @@ void CrouchingState::Walk()
 }
 void CrouchingState::Throw()
 {
-	simon->SetState(simon->GetThrowingState());
+	ninja->SetState(ninja->GetThrowingState());
 }
 void CrouchingState::Jump()
 {
@@ -39,13 +39,14 @@ void CrouchingState::Render()
 	State::Render();
 
 	SpriteData spriteData;
-	spriteData.width = SIMON_SPRITE_WIDTH;
-	spriteData.height = SIMON_SPRITE_HEIGHT;
-	spriteData.x = simon->GetPositionX();
-	spriteData.y = simon->GetPositionY();
+	spriteData.width = NINJA_SPRITE_WIDTH;
+	spriteData.height = NINJA_SPRITE_HEIGHT;
+	spriteData.x = ninja->GetPositionX();
+	spriteData.y = ninja->GetPositionY();
 	spriteData.scale = 1;
 	spriteData.angle = 0;
-	spriteData.isLeft = simon->IsLeft();
+	spriteData.isLeft = ninja->IsLeft();
+	spriteData.isFlipped = ninja->IsFlipped();
 
-	simon->GetAnimationsList()[SIMON_ANI_CROUCHING]->Render(spriteData);
+	ninja->GetAnimationsList()[NINJA_ANI_CROUCHING]->Render(spriteData);
 }

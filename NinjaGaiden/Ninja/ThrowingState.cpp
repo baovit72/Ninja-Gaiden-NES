@@ -1,10 +1,10 @@
 #include "ThrowingState.h"
 
-ThrowingState::ThrowingState(Simon * simon)
+ThrowingState::ThrowingState(Ninja * ninja)
 {
-	this->simon = simon;
-	simon->GetAnimationsList()[SIMON_ANI_STANDING_ATTACKING]->Reset();
-	simon->GetAnimationsList()[SIMON_ANI_CROUCHING_ATTACKING]->Reset();
+	this->ninja = ninja;
+	ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Reset();
+	ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Reset();
 }
 void ThrowingState::Idle()
 {
@@ -40,36 +40,36 @@ void ThrowingState::Render()
 	State::Render();
 
 	SpriteData spriteData;
-	spriteData.width = SIMON_SPRITE_WIDTH;
-	spriteData.height = SIMON_SPRITE_HEIGHT;
-	spriteData.x = simon->GetPositionX();
-	spriteData.y = simon->GetPositionY();
+	spriteData.width = NINJA_SPRITE_WIDTH;
+	spriteData.height = NINJA_SPRITE_HEIGHT;
+	spriteData.x = ninja->GetPositionX();
+	spriteData.y = ninja->GetPositionY();
 	spriteData.scale = 1;
 	spriteData.angle = 0;
-	spriteData.isLeft = simon->IsLeft();
+	spriteData.isLeft = ninja->IsLeft();
 
-	if (simon->IsCrouching())
+	if (ninja->IsCrouching())
 	{
-		simon->GetAnimationsList()[SIMON_ANI_CROUCHING_ATTACKING]->Render(spriteData);
+		ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Render(spriteData);
 
-		if (simon->GetAnimationsList()[SIMON_ANI_CROUCHING_ATTACKING]->IsDone())
+		if (ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->IsDone())
 		{
-			simon->CreateThrownWeapon();
-			simon->GetAnimationsList()[SIMON_ANI_CROUCHING_ATTACKING]->Reset();
-			simon->SetIsCrouching(true);
-			simon->SetState(simon->GetCrouchingState());
+			ninja->CreateThrownWeapon();
+			ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Reset();
+			ninja->SetIsCrouching(true);
+			ninja->SetState(ninja->GetCrouchingState());
 		}
 	}
 	else
 	{
-		simon->GetAnimationsList()[SIMON_ANI_STANDING_ATTACKING]->Render(spriteData);
+		ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Render(spriteData);
 
-		if (simon->GetAnimationsList()[SIMON_ANI_STANDING_ATTACKING]->IsDone())
+		if (ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->IsDone())
 		{
-			simon->CreateThrownWeapon();
-			simon->GetAnimationsList()[SIMON_ANI_STANDING_ATTACKING]->Reset();
-			simon->GetWhip()->ResetAnim();
-			simon->SetState(simon->GetIdleState());
+			ninja->CreateThrownWeapon();
+			ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Reset();
+			ninja->GetWhip()->ResetAnim();
+			ninja->SetState(ninja->GetIdleState());
 		}
 	}
 }

@@ -6,7 +6,8 @@ GameObject::GameObject()
 {
 	x = y = 0;
 	vx = vy = 0;
-	isLeft = true;
+	isLeft = false;
+	isFlipped = false;
 }
 
 

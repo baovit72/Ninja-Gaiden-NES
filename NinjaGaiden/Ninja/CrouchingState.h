@@ -1,11 +1,11 @@
 #pragma once
 #include "State.h"
-#include "Simon.h"
+#include "Ninja.h"
 
 class CrouchingState : public State
 {
 public:
-	CrouchingState(Simon * simon);
+	CrouchingState(Ninja * ninja);
 	void Idle();
 	void Attack();
 	void Walk();

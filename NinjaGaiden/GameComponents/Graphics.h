@@ -2,6 +2,7 @@
 #include <Windows.h>
 #include <d3d9.h>
 #include <d3dx9.h>
+#include "Viewport.h"
 #include "Sprite.h"
 
 class Sprite;
@@ -10,6 +11,7 @@ class Sprite;
 class Graphics
 {
 	static Graphics * __instance;
+	static Viewport * viewport;
 	HWND hWnd;									//Xử lí cửa sổ
 
 	LPDIRECT3D9 d3d = NULL;						//Đối tượng Direct3D9

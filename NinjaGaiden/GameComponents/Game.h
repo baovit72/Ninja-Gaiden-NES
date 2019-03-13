@@ -1,22 +1,9 @@
 ﻿#pragma once
+#include "Constants.h"
 #include "Graphics.h"
 #include "Keyboard.h"
-#include "Simon.h"
+#include "Ninja.h"
 #include "TiledMap.h"
-//Tên ứng dụng
-#define WINDOW_CLASS_NAME L"Ninja Gaiden"
-#define MAIN_WINDOW_TITLE L"Ninja Gaiden"
-//Màu background, kích cỡ màn hình
-#define BACKGROUND_COLOR D3DCOLOR_XRGB(200, 200, 255)
-#define SCREEN_WIDTH 2048
-#define SCREEN_HEIGHT 448
-
-//Framerate tối đa
-#define MAX_FRAME_RATE 90
-//Id texture của các vật thể
-#define ID_TEX_SIMON 0
-#define ID_TEX_ENEMY 10
-#define ID_TEX_MISC 20
 
 class Graphics;
 class Keyboard;
@@ -32,8 +19,9 @@ class Game
 	Keyboard * keyboard;
 	Graphics * graphics;
 
-	Simon * simon;
+	Ninja * ninja;
 	TiledMap * tiledMap;
+	Viewport * viewport;
 public:
 	//Khởi tạo game chính
 	void Init();
@@ -45,7 +33,8 @@ public:
 	void Render();
 	int Run();
 	//Lấy đối tượng
-	Simon * GetSimon();
+	Ninja * GetNinja();
+	TiledMap * GetTiledMap() { return tiledMap; }
 	static Game * GetInstance();
 	//Hàm hủy đối tượng
 	~Game();

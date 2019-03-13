@@ -24,6 +24,7 @@ private:
 	void LoadTileSet(LPCWSTR tilesLocation);
 	Matrix matrix;
 
+	int mapWidth, mapHeight;
 	int tileSetWidth, tileSetHeight;
 	LPCWSTR infoLocation;
 	unordered_map<int, Sprite*> tiles;

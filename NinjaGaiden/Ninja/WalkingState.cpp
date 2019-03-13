@@ -1,43 +1,43 @@
 #include "WalkingState.h"
 
-WalkingState::WalkingState(Simon * simon)
+WalkingState::WalkingState(Ninja * ninja)
 {
-	this->simon = simon;
+	this->ninja = ninja;
 }
 void WalkingState::Idle()
 {
-	simon->SetSpeedX(0);
+	ninja->SetSpeedX(0);
 
-	simon->SetState(simon->GetIdleState());
+	ninja->SetState(ninja->GetIdleState());
 }
 void WalkingState::Attack()
 {
-	simon->SetSpeedX(0);
-	simon->SetState(simon->GetAttackingState());
+	ninja->SetSpeedX(0);
+	ninja->SetState(ninja->GetAttackingState());
 }
 void WalkingState::Walk()
 {
-	simon->SetSpeedX(SIMON_WALKING_SPEED * (simon->IsLeft() ? -1 : 1));
+	ninja->SetSpeedX(NINJA_WALKING_SPEED * (ninja->IsLeft() ? -1 : 1));
 }
 void WalkingState::Throw()
 {
-	simon->SetSpeedX(0);
-	simon->SetState(simon->GetThrowingState());
+	ninja->SetSpeedX(0);
+	ninja->SetState(ninja->GetThrowingState());
 }
 void WalkingState::Jump()
 {
-	if (simon->IsGrounded())
+	if (ninja->IsGrounded())
 	{
-		simon->SetIsGrounded(false);
-		simon->SetSpeedY(-SIMON_JUMP_SPEED_Y);
-		simon->SetState(simon->GetJumpingState());
+		ninja->SetIsGrounded(false);
+		ninja->SetSpeedY(NINJA_JUMP_SPEED_Y);
+		ninja->SetState(ninja->GetJumpingState());
 	}
 }
 void WalkingState::Crouch()
 {
-	simon->SetSpeedX(0);
-	simon->SetIsCrouching(true);
-	simon->SetState(simon->GetCrouchingState());
+	ninja->SetSpeedX(0);
+	ninja->SetIsCrouching(true);
+	ninja->SetState(ninja->GetCrouchingState());
 }
 void WalkingState::Update(DWORD dt)
 {
@@ -48,13 +48,14 @@ void WalkingState::Render()
 	State::Render();
 
 	SpriteData spriteData;
-	spriteData.width = SIMON_SPRITE_WIDTH;
-	spriteData.height = SIMON_SPRITE_HEIGHT;
-	spriteData.x = simon->GetPositionX();
-	spriteData.y = simon->GetPositionY();
+	spriteData.width = NINJA_SPRITE_WIDTH;
+	spriteData.height = NINJA_SPRITE_HEIGHT;
+	spriteData.x = ninja->GetPositionX();
+	spriteData.y = ninja->GetPositionY();
 	spriteData.scale = 1;
 	spriteData.angle = 0;
-	spriteData.isLeft = simon->IsLeft();
+	spriteData.isLeft = ninja->IsLeft();
+	spriteData.isFlipped = ninja->IsFlipped();
 
-	simon->GetAnimationsList()[SIMON_ANI_WALKING]->Render(spriteData);
+	ninja->GetAnimationsList()[NINJA_ANI_WALKING]->Render(spriteData);
 }

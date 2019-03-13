@@ -1,9 +1,9 @@
 #include "JumpingState.h"
 
 
-JumpingState::JumpingState(Simon * simon)
+JumpingState::JumpingState(Ninja * ninja)
 {
-	this->simon = simon;
+	this->ninja = ninja;
 }
 void JumpingState::Idle()
 {
@@ -11,7 +11,7 @@ void JumpingState::Idle()
 }
 void JumpingState::Attack()
 {
-	simon->SetState(simon->GetAttackingState());
+	ninja->SetState(ninja->GetAttackingState());
 }
 void JumpingState::Walk()
 {
@@ -19,7 +19,7 @@ void JumpingState::Walk()
 }
 void JumpingState::Throw()
 {
-	simon->SetState(simon->GetThrowingState());
+	ninja->SetState(ninja->GetThrowingState());
 }
 void JumpingState::Jump()
 {
@@ -33,9 +33,9 @@ void JumpingState::Update(DWORD dt)
 {
 	State::Update(dt);
 	
-	if (simon->GetPositionY() >= 100)
+	if (ninja->IsGrounded())
 	{
-		simon->SetState(simon->GetIdleState());
+		ninja->SetState(ninja->GetIdleState());
 	}
 }
 void JumpingState::Render()
@@ -43,13 +43,14 @@ void JumpingState::Render()
 	State::Render();
 
 	SpriteData spriteData;
-	spriteData.width = SIMON_SPRITE_WIDTH;
-	spriteData.height = SIMON_SPRITE_HEIGHT;
-	spriteData.x = simon->GetPositionX();
-	spriteData.y = simon->GetPositionY();
+	spriteData.width = NINJA_SPRITE_WIDTH;
+	spriteData.height = NINJA_SPRITE_HEIGHT;
+	spriteData.x = ninja->GetPositionX();
+	spriteData.y = ninja->GetPositionY();
 	spriteData.scale = 1;
 	spriteData.angle = 0;
-	spriteData.isLeft = simon->IsLeft();
+	spriteData.isLeft = ninja->IsLeft();
+	spriteData.isFlipped = ninja->IsFlipped();
 
-	simon->GetAnimationsList()[SIMON_ANI_JUMPING]->Render(spriteData);
+	ninja->GetAnimationsList()[NINJA_ANI_JUMPING]->Render(spriteData);
 }

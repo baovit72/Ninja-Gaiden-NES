@@ -1,41 +1,41 @@
 #include "IdleState.h"
 
 
-IdleState::IdleState(Simon * simon)
+IdleState::IdleState(Ninja * ninja)
 {
-	this->simon = simon;
+	this->ninja = ninja;
 }
 void IdleState::Idle()
 {
-	//simon->SetState(simon->GetIdleState());
+	//ninja->SetState(ninja->GetIdleState());
 }
 void IdleState::Attack()
 {
-	simon->SetState(simon->GetAttackingState());
+	ninja->SetState(ninja->GetAttackingState());
 }
 void IdleState::Walk()
 {
-	simon->SetSpeedX(SIMON_WALKING_SPEED * (simon->IsLeft() ? -1 : 1));
+	ninja->SetSpeedX(NINJA_WALKING_SPEED * (ninja->IsLeft() ? -1 : 1));
 
-	simon->SetState(simon->GetWalkingState());
+	ninja->SetState(ninja->GetWalkingState());
 }
 void IdleState::Throw()
 {
-	simon->SetState(simon->GetThrowingState());
+	ninja->SetState(ninja->GetThrowingState());
 }
 void IdleState::Jump()
 {
-	if (simon->IsGrounded())
+	if (ninja->IsGrounded())
 	{
-		simon->SetIsGrounded(false);
-		simon->SetSpeedY(-SIMON_JUMP_SPEED_Y);
-		simon->SetState(simon->GetJumpingState());
+		ninja->SetIsGrounded(false);
+		ninja->SetSpeedY(NINJA_JUMP_SPEED_Y);
+		ninja->SetState(ninja->GetJumpingState());
 	}
 }
 void IdleState::Crouch()
 {
-	simon->SetIsCrouching(true);
-	simon->SetState(simon->GetCrouchingState());
+	ninja->SetIsCrouching(true);
+	ninja->SetState(ninja->GetCrouchingState());
 }
 void IdleState::Update(DWORD dt)
 {
@@ -46,13 +46,14 @@ void IdleState::Render()
 	State::Render();
 
 	SpriteData spriteData;
-	spriteData.width = SIMON_SPRITE_WIDTH;
-	spriteData.height = SIMON_SPRITE_HEIGHT;
-	spriteData.x = simon->GetPositionX();
-	spriteData.y = simon->GetPositionY();
+	spriteData.width = NINJA_SPRITE_WIDTH;
+	spriteData.height = NINJA_SPRITE_HEIGHT;
+	spriteData.x = ninja->GetPositionX();
+	spriteData.y = ninja->GetPositionY();
 	spriteData.scale = 1;
 	spriteData.angle = 0;
-	spriteData.isLeft = simon->IsLeft();
+	spriteData.isLeft = ninja->IsLeft();
+	spriteData.isFlipped = ninja->IsFlipped();
 
-	simon->GetAnimationsList()[SIMON_ANI_IDLE]->Render(spriteData);
+	ninja->GetAnimationsList()[NINJA_ANI_IDLE]->Render(spriteData);
 }
