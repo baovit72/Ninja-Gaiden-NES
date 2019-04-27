@@ -7,7 +7,7 @@ JumpingState::JumpingState(Ninja * ninja)
 }
 void JumpingState::Idle()
 {
-
+	
 }
 void JumpingState::Attack()
 {
@@ -35,6 +35,9 @@ void JumpingState::Update(DWORD dt)
 	
 	if (ninja->IsGrounded())
 	{
+		ninja->SetSpeedX(0);
+		ninja->SetSpeedY(0);
+
 		ninja->SetState(ninja->GetIdleState());
 	}
 }

@@ -1,6 +1,6 @@
 ﻿#include "Game.h"
 #include "Debug.h"
-
+#include <stdlib.h>
 Game * Game::__instance = NULL;
 HINSTANCE Game::hInstance = NULL;
 //Khởi tạo game chính
@@ -148,21 +148,189 @@ int Game::Run()
 		// this frame: the frame we are about to render
 		//Tính giá trị delta time = thời gian hiện tại - thời gian bắt đầu frame trước
 		DWORD dt = now - frameStart;
-
 		//Nếu dt > tickPerFram, hay đến lúc xử lí frame tiếp theo, bắt đầu Update và Render
-		if (dt >= tickPerFrame)
+		/*if (dt >= tickPerFrame)
 		{
 			frameStart = now;
-
 			Update(dt);
 			Render();
 		}
 		else //Ngược lại, chờ đến khi đủ thời gian xử lí frame tiếp theo
+		{
 			Sleep(tickPerFrame - dt);
+			dt = tickPerFrame;
+			frameStart = now;
+			Update(dt);
+			Render();
+		}*/
+		if (dt < tickPerFrame)
+		{
+			Sleep(tickPerFrame - dt);
+			dt = tickPerFrame;
+		}
+		frameStart = now;
+		Update(dt);
+		Render();
 	}
 
 	return 1;
 }
+
+bool AABB(const Collider &c1, const Collider &c2)
+{
+	return (
+		c1.x < c2.x + c2.width &&
+		c1.x + c1.width > c2.x &&
+		c1.y > c2.y - c2.height &&
+		c1.y - c1.height < c2.y
+		);
+}
+Collider GetSweptBroadphaseRect(const Collider &object)
+{
+	Collider broadphaseBox;
+	broadphaseBox.x = object.vx > 0 ? object.x : object.x + object.vx * object.dt;
+	broadphaseBox.y = object.vy > 0 ? object.y + object.vy * object.dt : object.y;
+	broadphaseBox.width = object.width + abs(object.vx * object.dt);
+	broadphaseBox.height = object.height + abs(object.vy * object.dt);
+
+	return broadphaseBox;
+}
+float Game::SweptAABB(Collider c1, Collider c2, float &normalx, float &normaly)
+{
+	float dxEntry, dyEntry;
+	float dxExit, dyExit;
+
+	c1.vx = c1.vx - c2.vx;
+	c1.vy = c1.vy - c2.vy;
+
+	int dx = c1.vx * c1.dt;
+	int dy = c1.vy * c1.dt;
+
+	
+	Collider broadphaseBox = GetSweptBroadphaseRect(c1);
+	if (AABB(broadphaseBox, c2))
+	{
+		int i = 0;
+	}
+	if (!AABB(broadphaseBox, c2))
+	{
+		return 1.0f;
+	}
+
+	if (dx > 0.0f)
+	{
+		dxEntry = c2.x - (c1.x + c1.width);
+		dxExit = (c2.x + c2.width) - c1.x;
+	}
+	else
+	{
+		dxEntry = (c2.x + c2.width) - c1.x;
+		dxExit = c2.x - (c1.x + c1.width);
+	}
+
+	if (dy > 0.0f)
+	{
+		dyEntry = (c2.y - c2.height) - c1.y;
+		dyExit = c2.y - (c1.y - c1.height);
+	}
+	else
+	{
+		dyEntry = c2.y - (c1.y - c1.height);
+		dyExit = (c2.y - c2.height) - c1.y;
+	}
+
+	float txEntry, tyEntry;
+	float txExit, tyExit;
+
+	if (dx == 0)
+	{
+		txEntry = -std::numeric_limits<float>::infinity();
+		txExit = std::numeric_limits<float>::infinity();
+	}
+	else
+	{
+		txEntry = dxEntry / dx;
+		txExit = dxExit / dx;
+	}
+
+	if (dy == 0)
+	{
+		tyEntry = -std::numeric_limits<float>::infinity();
+		tyExit = std::numeric_limits<float>::infinity();
+	}
+	else
+	{
+		tyEntry = dyEntry / dy;
+		tyExit = dyExit / dy;
+	}
+
+	float entryTime = max(txEntry, tyEntry);
+	float exitTime = min(txExit, tyExit);
+
+	if (entryTime > exitTime || (txEntry < 0.0f && tyEntry < 0.0f) || txEntry > 1.0f || tyEntry > 1.0f)
+	{
+		normalx = 0.0f;
+		normaly = 0.0f;
+		return 1.0f;
+	}
+	else
+	{
+		if (txEntry > tyEntry)
+		{
+			if (dxEntry < 0.0f)
+			{
+				normalx = 1.0f;
+				normaly = 0.0f;
+			}
+			else if (dxEntry > 0.0f)
+			{
+				normalx = -1.0f;
+				normaly = 0.0f;
+			}
+			else
+			{
+				if (c1.x <= c2.x)
+				{
+					normalx = -1.0f;
+					normaly = 0.0f;
+				}
+				else
+				{
+					normalx = 1.0f;
+					normaly = 0.0f;
+				}
+			}
+		}
+		else
+		{
+			if (dyEntry < 0.0f)
+			{
+				normalx = 0.0f;
+				normaly = 1.0f;
+			}
+			else if (dyEntry > 0.0f)
+			{
+				normalx = 0.0f;
+				normaly = -1.0f;
+			}
+			else
+			{
+				if (c1.y <= c2.y)
+				{
+					normalx = 0.0f;
+					normaly = -1.0f;
+				}
+				else
+				{
+					normalx = 0.0f;
+					normaly = 1.0f;
+				}
+			}
+		}
+		return entryTime;
+	}
+}
+
 Game::~Game()
 {
 

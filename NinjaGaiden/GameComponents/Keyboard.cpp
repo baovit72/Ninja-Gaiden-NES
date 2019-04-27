@@ -167,6 +167,9 @@ void Keyboard::OnKeyDown(int KeyCode)
 	case DIK_3:
 		ninja->SetWhip(WHIP_LONG_CHAIN);
 		break;
+	case DIK_Q:
+		ninja->SetPositionY(100);
+		break;
 	}
 }
 void Keyboard::OnKeyUp(int KeyCode)

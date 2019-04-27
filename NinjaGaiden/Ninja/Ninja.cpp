@@ -19,6 +19,14 @@ Ninja::Ninja()
 
 	state = idleState;
 
+	this->x = 100;
+	this->y = 100;
+	collider.x = x;
+	collider.y = y;
+	collider.vx = 0;
+	collider.vy = 0;
+	collider.width = NINJA_SPRITE_WIDTH;
+	collider.height = NINJA_SPRITE_HEIGHT;
 }
 Ninja * Ninja::GetInstance()
 {
@@ -45,7 +53,7 @@ void Ninja::LoadResources()
 
 	// 1
 	anim = new Animation(50);
-	for (int i = 0; i < 4; i++)
+	for (int i = 1; i < 4; i++)
 	{
 		RECT rect;
 		rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
@@ -229,11 +237,6 @@ void Ninja::CreateThrownWeapon()
 //Hàm cập nhật
 void Ninja::Update(DWORD dt)
 {
-	whip->Update(dt);
-	for (int i = 0; i < subweapons.size(); i++)
-	{
-		subweapons[i]->Update(dt);
-	}
 	state->Update(dt);
 }
 //Hàm render

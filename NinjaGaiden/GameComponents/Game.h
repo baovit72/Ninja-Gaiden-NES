@@ -32,6 +32,8 @@ public:
 	void Update(DWORD dt);
 	void Render();
 	int Run();
+
+	static float SweptAABB(Collider c1, Collider c2, float &normalx, float &normaly);
 	//Lấy đối tượng
 	Ninja * GetNinja();
 	TiledMap * GetTiledMap() { return tiledMap; }

@@ -10,7 +10,7 @@
 #define SCREEN_HEIGHT 176
 
 //Framerate tối đa
-#define MAX_FRAME_RATE 90
+#define MAX_FRAME_RATE 60
 //Id texture của các vật thể
 #define ID_TEX_NINJA 0
 #define ID_TEX_ENEMY 10
@@ -25,6 +25,7 @@
 #define TILES_WIDTH_PER_TILE	16
 #define TILES_HEIGHT_PER_TILE	16
 #define TILES_TRANSCOLOR D3DCOLOR_XRGB(255, 0, 255)
+#define TILES_SOLID_IDS (int[12]){ 24, 25, 26, 39, 58, 63, 65, 66, 67, 68, 69, 70 }
 
 //
 //Ryu
