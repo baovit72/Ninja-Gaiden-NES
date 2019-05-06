@@ -1,6 +1,5 @@
 ﻿#include "Graphics.h"
 #include "Debug.h"
-
 Graphics * Graphics::__instance = NULL;
 Viewport * Graphics::viewport = NULL;
 //Khởi tạo Graphics chính
@@ -100,7 +99,7 @@ void Graphics::Draw(Sprite * sprite, D3DCOLOR color)
 {
 	if (sprite->GetTexture() == NULL)
 		return;
-	
+
 	D3DXVECTOR2 center = sprite->GetCenter();
 	D3DXVECTOR2 translate = sprite->GetTranslate();
 	D3DXVECTOR2 scaling = sprite->GetScaling();
@@ -116,7 +115,6 @@ void Graphics::Draw(Sprite * sprite, D3DCOLOR color)
 		sprite->GetAngle(),
 		&translate
 	);
-
 	spriteHandler->SetTransform(&matrix);
 	spriteHandler->Draw(sprite->GetTexture(), &(sprite->GetRect()), NULL, NULL, color);
 }

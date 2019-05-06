@@ -34,6 +34,9 @@ typedef vector<Row> Matrix;
 class TiledMap
 {
 private:
+	static TiledMap * __instance;
+	TiledMap(LPCWSTR filePath);
+
 	void LoadMap(LPCWSTR filePath);
 	string LoadMatrix(LPCWSTR filePath);
 	void LoadTileSet(LPCWSTR tilesLocation);
@@ -48,18 +51,20 @@ private:
 
 	unordered_map<int, Sprite *> tileSet;
 public:
-	TiledMap(LPCWSTR filePath);
+	static TiledMap * GetInstance(LPCWSTR filePath = NULL);
 
 	int GetWidth();
 	int GetHeight();
 	int GetTileWidth();
 	int GetTileHeight();
 
-	Matrix GetMatrix() { return matrix; }
+	Matrix & GetMatrix() { return matrix; }
 
 
 	void Update(DWORD dt);
 	void Render();
+
+	void RenderTile(Tile * curTile);
 
 	~TiledMap();
 };

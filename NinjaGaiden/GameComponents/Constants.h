@@ -6,7 +6,7 @@
 #define MAIN_WINDOW_TITLE L"Ninja Gaiden"
 //Màu background, kích cỡ màn hình
 #define BACKGROUND_COLOR D3DCOLOR_XRGB(200, 200, 255)
-#define SCREEN_WIDTH 313
+#define SCREEN_WIDTH 600
 #define SCREEN_HEIGHT 176
 
 //Framerate tối đa
@@ -78,3 +78,8 @@
 #define SUBWEAPON_KNIFE_TEXTURE_ROWS 1
 #define SUBWEAPON_KNIFE_SPRITE_WIDTH 32
 #define SUBWEAPON_KNIFE_SPRITE_HEIGHT 18
+
+//Grid Spatial Partitioning Parameters
+#define GRID_SIZE 64
+#define GRID_MAX_X 48
+#define GRID_MAX_Y 5

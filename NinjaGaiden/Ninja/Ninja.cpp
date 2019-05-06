@@ -21,6 +21,8 @@ Ninja::Ninja()
 
 	this->x = 100;
 	this->y = 100;
+	this->width = NINJA_SPRITE_WIDTH;
+	this->height = NINJA_SPRITE_HEIGHT;
 	collider.x = x;
 	collider.y = y;
 	collider.vx = 0;

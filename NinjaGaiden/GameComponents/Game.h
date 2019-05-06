@@ -4,9 +4,12 @@
 #include "Keyboard.h"
 #include "Ninja.h"
 #include "TiledMap.h"
+#include "Grid.h"
 
+#include <chrono>
 class Graphics;
 class Keyboard;
+class Grid;
 
 class Game
 {
@@ -22,6 +25,7 @@ class Game
 	Ninja * ninja;
 	TiledMap * tiledMap;
 	Viewport * viewport;
+	Grid * grid;
 public:
 	//Khởi tạo game chính
 	void Init();

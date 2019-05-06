@@ -13,8 +13,8 @@ struct Collider
 {
 	float x, y;
 	float width, height;
-	float vx, vy;
-	float dt;
+	float vx = 0, vy = 0;
+	float dt = 0;
 };
 class GameObject;
 typedef GameObject * LPGAMEOBJECT;
@@ -49,6 +49,9 @@ protected:
 	float x;
 	float y;
 
+	int width;
+	int height;
+
 	float vx;
 	float vy;
 
@@ -74,10 +77,15 @@ public:
 
 	float GetPositionX() { return this->x; }
 	float GetPositionY() { return this->y; }
+
+	int GetWidth() { return this->width; }
+	int GetHeight() { return this->height; }
+
 	float GetSpeedX() { return this->vx; }
 	float GetSpeedY() { return this->vy; }
 
 	float GetDt() { return dt; }
+	RECT GetRect();
 
 	Collider GetCollider() { return this->collider; }
 	LPCOLLISIONEVENT SweptAABBEx(LPGAMEOBJECT coO);
@@ -87,11 +95,11 @@ public:
 		vector<LPCOLLISIONEVENT> &coEvents);
 
 	void CalcPotentialMapCollisions(
-		Matrix &tiledMapMatrix, 
+		vector<Tile *> &tiles,
 		vector<LPCOLLISIONEVENT> &coEvents);
 
 	void CalcPotentialCollisions(
-		Matrix &tiledMapMatrix,
+		vector<Tile *> &tiles,
 		vector<LPGAMEOBJECT> &coObjects, 
 		vector<LPCOLLISIONEVENT> &coEvents);
 

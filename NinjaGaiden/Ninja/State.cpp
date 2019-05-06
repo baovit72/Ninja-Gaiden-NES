@@ -8,13 +8,14 @@ void State::Update(DWORD dt)
 	vector<LPCOLLISIONEVENT> coEvents;
 	vector<LPCOLLISIONEVENT> coEventsResult;
 
-	Matrix tiledMapMatrix = Game::GetInstance()->GetTiledMap()->GetMatrix();
+	vector<Tile *> tiles = Grid::GetInstance()->GetCurTiles();
 
 	ninja->SetSpeedY(ninja->GetSpeedY() - NINJA_GRAVITY);
 
 	coEvents.clear();
 	ninja->SetDt(dt);
-	ninja->CalcPotentialCollisions(tiledMapMatrix, coObjects, coEvents);
+	ninja->CalcPotentialCollisions(tiles, coObjects, coEvents);
+
 
 	if (coEvents.size() == 0)
 	{
@@ -23,6 +24,7 @@ void State::Update(DWORD dt)
 
 		ninja->SetPositionX(ninja->GetPositionX() + moveX);
 		ninja->SetPositionY(ninja->GetPositionY() + moveY);
+
 	}
 	else
 	{
@@ -48,14 +50,15 @@ void State::Update(DWORD dt)
 			}
 		}
 	}
-	for (UINT i = 0; i < coEvents.size(); i++) delete coEvents[i];
+	for (UINT i = 0; i < coEvents.size(); i++)
+		delete coEvents[i];
 
-	int Y = ninja->GetPositionY();
-	DebugOut(L"Y: %d\n", Y);
+
 	if (ninja->GetPositionY() < 0)
 	{
 		ninja->SetPositionX(100);
 		ninja->SetPositionY(100);
+		Viewport::GetInstance()->ResetPosition();
 	}
 	/*TiledMap * tiledMap = Game::GetInstance()->GetTiledMap();
 	vector<GameObject *> solidTiles = tiledMap->GetSolidTiles();

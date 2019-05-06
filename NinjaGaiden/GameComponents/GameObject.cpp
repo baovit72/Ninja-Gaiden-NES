@@ -20,6 +20,8 @@ GameObject::GameObject(float x, float y, float width, float height)
 { 
 	this->x = x; 
 	this->y = y; 
+	this->width = width;
+	this->height = height;
 	vx = vy = 0;
 	isLeft = false;
 	isFlipped = false;
@@ -53,43 +55,40 @@ void GameObject::CalcPotentialGameObjectCollisions(
 	return;
 }
 void GameObject::CalcPotentialMapCollisions(
-	Matrix &tiledMapMatrix, 
+	vector<Tile *> &tiles,
 	vector<LPCOLLISIONEVENT> &coEvents)
 {
 
 	LPGAMEOBJECT solidTileDummy = new GameObject(0, 0, 16, 16);
-	for (int i = 0; i < tiledMapMatrix.size(); i++)
+	for (int i = 0; i < tiles.size(); i++)
 	{
-		for (int j = 0; j < tiledMapMatrix[i].size(); j++)
-		{
-			Tile curTile = tiledMapMatrix[i][j];
-			if (curTile.type == 1)
-			{	
-				solidTileDummy->SetPositionX(curTile.x);
-				solidTileDummy->SetPositionY(curTile.y);
-				solidTileDummy->UpdateTileCollider();
+		Tile * curTile = tiles[i];
+		if (curTile->type == 1)
+		{	
+			solidTileDummy->SetPositionX(curTile->x);
+			solidTileDummy->SetPositionY(curTile->y);
+			solidTileDummy->UpdateTileCollider();
 
-				LPCOLLISIONEVENT e = SweptAABBEx(solidTileDummy);
-				e->collisionID = 1;
+			LPCOLLISIONEVENT e = SweptAABBEx(solidTileDummy);
+			e->collisionID = 1;
 
-				if (e->t >= 0 && e->t < 1.0f && e->ny == 1)
-					coEvents.push_back(e);
-				else
-				{
-					delete e;
-				}
+			if (e->t >= 0 && e->t < 1.0f && e->ny == 1)
+				coEvents.push_back(e);
+			else
+			{
+				delete e;
 			}
 		}
 	}
 }
 
 void GameObject::CalcPotentialCollisions(
-	Matrix &tiledMapMatrix,
+	vector<Tile *> &tiles,
 	vector<LPGAMEOBJECT> &coObjects,
 	vector<LPCOLLISIONEVENT> &coEvents)
 {
 	this->UpdateObjectCollider();
-	CalcPotentialMapCollisions(tiledMapMatrix, coEvents);
+	CalcPotentialMapCollisions(tiles, coEvents);
 	CalcPotentialGameObjectCollisions(coObjects, coEvents);
 
 	sort(coEvents.begin(), coEvents.end(), CollisionEvent::compare);
@@ -161,4 +160,14 @@ void GameObject::UpdateTileCollider()
 void GameObject::Render()
 {
 
+}
+
+RECT GameObject::GetRect()
+{
+	RECT rect;
+	rect.top = y;
+	rect.left = x;
+	rect.right = x + width;
+	rect.bottom = y - height;
+	return rect;
 }

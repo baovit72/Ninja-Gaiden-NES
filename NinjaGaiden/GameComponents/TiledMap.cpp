@@ -1,5 +1,18 @@
 ﻿#include "TiledMap.h"
 
+TiledMap * TiledMap::__instance = NULL;
+TiledMap * TiledMap::GetInstance(LPCWSTR filePath)
+{
+	if (__instance == NULL || filePath != NULL)
+	{
+		if (__instance != NULL)
+		{
+			delete __instance;
+		}
+		__instance = new TiledMap(filePath);
+	}
+	return __instance;
+}
 //-------------------
 //Lấy dữ liệu đọc chuyển thành dòng trong ma trận
 Row TiledMap::GetMatrixRow(int lineNum, string line, string delimiter)
@@ -204,4 +217,20 @@ void TiledMap::Render()
 			}
 		}
 	}
+}
+void TiledMap::RenderTile(Tile * curTile)
+{
+	SpriteData spriteData;
+	spriteData.width = TILES_WIDTH_PER_TILE;
+	spriteData.height = TILES_HEIGHT_PER_TILE;
+	spriteData.x = curTile->x;
+	spriteData.y = curTile->y;
+	spriteData.scale = 1;
+	spriteData.angle = 0;
+	spriteData.isLeft = true;
+
+
+	tileSet.at(curTile->tileId)->SetData(spriteData);
+	Graphics::GetInstance()->Draw(tileSet.at(curTile->tileId));
+
 }

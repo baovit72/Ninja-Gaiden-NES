@@ -78,15 +78,17 @@ void Game::LoadResources()
 	if (ninja == NULL) 
 		ninja = Ninja::GetInstance();
 	if (tiledMap == NULL)
-		tiledMap = new TiledMap(TILES_MATRIX);
+		tiledMap = TiledMap::GetInstance(TILES_MATRIX);
 	if (viewport == NULL)
 		viewport = Viewport::GetInstance();
+	if (grid == NULL)
+		grid = Grid::GetInstance();
 }
 //Xử lí
 void Game::Update(DWORD dt)
 {
 	keyboard->Update();
-	ninja->Update(dt);
+	grid->Update(dt);
 	viewport->Update(dt);
 }
 void Game::Render()
@@ -95,6 +97,8 @@ void Game::Render()
 	LPDIRECT3DDEVICE9 d3ddv = graphics->GetDirect3DDevice();
 	LPDIRECT3DSURFACE9 bb = graphics->GetBackBuffer();
 	LPD3DXSPRITE spriteHandler = graphics->GetSpriteHandler();
+
+
 	//Bắt đầu render
 	if (SUCCEEDED(d3ddv->BeginScene()))
 	{
@@ -103,8 +107,7 @@ void Game::Render()
 		//Bắt đầu xử lí sprite
 		spriteHandler->Begin(D3DXSPRITE_ALPHABLEND);
 
-		tiledMap->Render();
-		ninja->Render();
+		grid->Render();
 
 		//Kết thúc xử lí sprite
 		spriteHandler->End();
@@ -112,8 +115,13 @@ void Game::Render()
 		d3ddv->EndScene();
 	}
 
+	auto start = std::chrono::steady_clock::now();
 	//Hiển thị backbuffer lên màn hình
 	d3ddv->Present(NULL, NULL, NULL, NULL);
+
+	// record end time
+	auto end = std::chrono::steady_clock::now();
+	std::chrono::duration<double> diff = (end - start) * 1000;
 }
 int Game::Run()
 {
@@ -169,7 +177,12 @@ int Game::Run()
 			dt = tickPerFrame;
 		}
 		frameStart = now;
+
+		if (dt - tickPerFrame > 3)
+			dt = tickPerFrame;
+
 		Update(dt);
+
 		Render();
 	}
 

@@ -26,11 +26,24 @@ Viewport * Viewport::GetInstance()
 		__instance = new Viewport();
 	return __instance;
 }
+
+void Viewport::ResetPosition()
+{
+	Ninja * ninja = Ninja::GetInstance();
+	int rightBoundary = (int)(Game::GetInstance()->GetTiledMap()->GetWidth() - width / 2);
+	int leftBoundary = (int)width / 2;
+	if (ninja->GetPositionX() > leftBoundary && ninja->GetPositionX() < rightBoundary)
+	{
+		this->x = ninja->GetPositionX() - leftBoundary;
+	}
+	else
+		this->x = 0;
+}
 void Viewport::Update(DWORD dt)
 {
 	Ninja * ninja = Ninja::GetInstance();
-	int rightBoundary = (int)(Game::GetInstance()->GetTiledMap()->GetWidth() - SCREEN_WIDTH / 2);
-	int leftBoundary = (int)SCREEN_WIDTH / 2;
+	int rightBoundary = (int)(Game::GetInstance()->GetTiledMap()->GetWidth() - width / 2);
+	int leftBoundary = (int)width / 2;
 	if (ninja->GetPositionX() > leftBoundary && ninja->GetPositionX() < rightBoundary)
 	{
 		this->x = ninja->GetPositionX() - leftBoundary;
@@ -55,3 +68,12 @@ void Viewport::SetRenderData(D3DXVECTOR2 &center, D3DXVECTOR2 &translate, D3DXVE
 	translate.y = curTranslate.y;
 }
 
+RECT Viewport::GetRect()
+{
+	RECT rect;
+	rect.top = y;
+	rect.left = x;
+	rect.right = x + width;
+	rect.bottom = y - height;
+	return rect;
+}
