@@ -1,4 +1,4 @@
-#include "JumpingState.h"
+﻿#include "JumpingState.h"
 
 
 JumpingState::JumpingState(Ninja * ninja)
@@ -29,10 +29,21 @@ void JumpingState::Crouch()
 {
 
 }
+
+ 
 void JumpingState::Update(DWORD dt)
 {
 	State::Update(dt);
-	
+	//Lấy Jump and Slash
+	if (this->JumpnSlash == NULL) {
+		vector<Subweapon *> subweapons = ninja->GetSubweapon();
+		for (int i = 0; i < subweapons.size(); i++) {
+			Subweapon *subweapon = subweapons.at(i);
+			//Jump slash thực hiện lúc nhảy
+			if (subweapon->getType() == SUBWEAPON_JUMPSLASH)
+				JumpnSlash = subweapon;
+		}
+	}
 	if (ninja->IsGrounded())
 	{
 		ninja->SetSpeedX(0);
@@ -56,4 +67,7 @@ void JumpingState::Render()
 	spriteData.isFlipped = ninja->IsFlipped();
 
 	ninja->GetAnimationsList()[NINJA_ANI_JUMPING]->Render(spriteData);
+	//Render Jump and Slash
+	if (JumpnSlash != NULL)
+		JumpnSlash->Render();
 }

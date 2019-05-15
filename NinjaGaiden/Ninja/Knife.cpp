@@ -39,15 +39,16 @@ void Knife::Update(DWORD dt)
 	this->y += this->vy * dt;
 }
 //Hàm render
-void Knife::Render(SpriteData spriteData)
+void Knife::Render( )
 {
+	SpriteData spriteData;
 	spriteData.width = SUBWEAPON_KNIFE_SPRITE_WIDTH;
 	spriteData.height = SUBWEAPON_KNIFE_SPRITE_HEIGHT;
 	spriteData.x = x;
 	spriteData.y = y;
 	spriteData.scale = 1;
 	spriteData.angle = 0;
-	spriteData.isLeft = this->isLeft;
+	spriteData.isFlipped = this->isLeft;
 
 	this->animation->Render(spriteData);
 

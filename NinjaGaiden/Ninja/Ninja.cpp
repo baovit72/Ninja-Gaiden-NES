@@ -8,7 +8,7 @@ Ninja::Ninja()
 {
 	LoadResources();
 
-	whip = new Whip();
+	whip = new Whip(this);
 
 	idleState = new IdleState(this);
 	walkingState = new WalkingState(this);
@@ -38,7 +38,7 @@ Ninja * Ninja::GetInstance()
 }
 void Ninja::LoadResources()
 {
-	// 0
+	// 0 - Idle
 	Animation * anim = new Animation(50);
 	for (int i = 0; i < 1; i++)
 	{
@@ -53,7 +53,7 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// 1
+	// 1 - Walking
 	anim = new Animation(50);
 	for (int i = 1; i < 4; i++)
 	{
@@ -68,8 +68,8 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// 2
-	anim = new Animation(50);
+	// 2 -  Attacking Whip
+	anim = new Animation(120);
 	for (int i = 10; i < 15; i++)
 	{
 		if (i == 10)
@@ -87,7 +87,7 @@ void Ninja::LoadResources()
 		{
 			RECT rect;
 			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
-			rect.right = rect.left + NINJA_SPRITE_WIDTH * 2;
+			rect.right = rect.left + NINJA_SPRITE_WIDTH;
 			rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
 			rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
 			Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
@@ -97,8 +97,8 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// 3
-	anim = new Animation(50);
+	// 3 - Crouching Attacking
+	anim = new Animation(120);
 	for (int i = 25; i < 30; i++)
 	{
 		if (i == 25)
@@ -116,7 +116,7 @@ void Ninja::LoadResources()
 		{
 			RECT rect;
 			rect.left = (i % NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_WIDTH;
-			rect.right = rect.left + NINJA_SPRITE_WIDTH * 2;
+			rect.right = rect.left + NINJA_SPRITE_WIDTH;
 			rect.top = (i / NINJA_TEXTURE_COLUMNS) * NINJA_SPRITE_HEIGHT;
 			rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
 			Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
@@ -126,8 +126,8 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// 4
-	anim = new Animation(50);
+	// 4 - Jumping
+	anim = new Animation(130);
 	for (int i = 6; i < 10; i++)
 	{
 		RECT rect;
@@ -141,7 +141,7 @@ void Ninja::LoadResources()
 	}
 	animations.push_back(anim);
 
-	// 5
+	// 5 - Crouching
 	anim = new Animation(50);
 	for (int i = 24; i < 25; i++)
 	{
@@ -152,6 +152,44 @@ void Ninja::LoadResources()
 		rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
 		Sprite * sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
 
+		anim->AddFrame(sprite);
+	}
+	animations.push_back(anim);
+	// 6- Climbing
+	anim = new Animation(120);
+	for (int i = 4; i <= 5; i++) {
+		RECT rect;
+		rect.left = (i% NINJA_TEXTURE_COLUMNS)*NINJA_SPRITE_WIDTH;
+		rect.right = rect.left + NINJA_SPRITE_WIDTH;
+		rect.top = (i / NINJA_TEXTURE_COLUMNS)*NINJA_SPRITE_HEIGHT;
+		rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+		Sprite *sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+		anim->AddFrame(sprite);
+	}
+	animations.push_back(anim);
+	// 7- Rolling  
+	anim = new Animation(120);
+	for (int i = 15; i < 19; i++) {
+		RECT rect;
+		rect.left = (i% NINJA_TEXTURE_COLUMNS)*NINJA_SPRITE_WIDTH;
+		rect.right = rect.left + NINJA_SPRITE_WIDTH;
+		rect.top = (i / NINJA_TEXTURE_COLUMNS)*NINJA_SPRITE_HEIGHT;
+		rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+		Sprite *sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
+		anim->AddFrame(sprite);
+	}
+	animations.push_back(anim);
+
+	// 8 - Throwing
+
+	anim = new Animation(50);
+	for (int i = 20; i < 23; i++) {
+		RECT rect;
+		rect.left = (i% NINJA_TEXTURE_COLUMNS)*NINJA_SPRITE_WIDTH;
+		rect.right = rect.left + NINJA_SPRITE_WIDTH;
+		rect.top = (i / NINJA_TEXTURE_COLUMNS)*NINJA_SPRITE_HEIGHT;
+		rect.bottom = rect.top + NINJA_SPRITE_HEIGHT;
+		Sprite *sprite = new Sprite(NINJA_TEXTURE_LOCATION, rect, NINJA_TEXTURE_TRANS_COLOR);
 		anim->AddFrame(sprite);
 	}
 	animations.push_back(anim);
@@ -222,19 +260,39 @@ void Ninja::TurnRight()
 }
 void Ninja::CreateThrownWeapon()
 {
-	Subweapon * subweapon;
+	Subweapon * subweapon = NULL;
 	switch (curSubweapon)
 	{
 	case SUBWEAPON_KNIFE:
-		subweapon = new Knife();
-		if (isLeft) 
-			subweapon->TurnLeft();
-		else 
-			subweapon->TurnRight();
-		subweapon->SetThrownPosition(this->x, this->y, isCrouching);
-		this->subweapons.push_back(subweapon);
+		subweapon = new  Knife();
 		break;
+	case SUBWEAPON_FIREWHEEL:
+		subweapon = new FireWheel();
+		break;
+	case SUBWEAPON_THROWINGSHURIKEN:
+		subweapon = new ThrowingShuriken();
+		break;
+	case SUBWEAPON_WINDMILLSHURIKEN:
+		subweapon = new WindmillShuriken();
+		break;
+	case SUBWEAPON_JUMPSLASH:
+		subweapon = new JumpSlash();
+	default:
+		break;
+
 	}
+	if (subweapon == NULL)
+		return;
+	if (isFlipped)
+		subweapon->TurnLeft();
+	else
+		subweapon->TurnRight();
+	subweapon->SetThrownPosition(this->x, this->y, isCrouching);
+	this->subweapons.push_back(subweapon);
+	 
+}
+void Ninja::SetSubweapon(int type) {
+	this->curSubweapon = type;
 }
 //Hàm cập nhật
 void Ninja::Update(DWORD dt)

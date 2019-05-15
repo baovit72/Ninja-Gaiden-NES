@@ -30,18 +30,23 @@
     <ClCompile Include="GameComponents\Sprite.cpp" />
     <ClCompile Include="GameComponents\Viewport.cpp" />
     <ClCompile Include="Ninja\AttackingState.cpp" />
+    <ClCompile Include="Ninja\ClimbingState.cpp" />
     <ClCompile Include="Ninja\CrouchingState.cpp" />
+    <ClCompile Include="Ninja\FireWheel.cpp" />
     <ClCompile Include="Ninja\IdleState.cpp" />
     <ClCompile Include="Ninja\JumpingState.cpp" />
+    <ClCompile Include="Ninja\JumpSlash.cpp" />
     <ClCompile Include="Ninja\Knife.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Ninja\Ninja.cpp" />
     <ClCompile Include="Ninja\State.cpp" />
     <ClCompile Include="Ninja\Subweapon.cpp" />
+    <ClCompile Include="Ninja\ThrowingShuriken.cpp" />
     <ClCompile Include="Ninja\ThrowingState.cpp" />
     <ClCompile Include="Ninja\WalkingState.cpp" />
     <ClCompile Include="Ninja\Whip.cpp" />
     <ClCompile Include="GameComponents\TiledMap.cpp" />
+    <ClCompile Include="Ninja\WindmillShuriken.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameComponents\Animation.h" />
@@ -56,24 +61,29 @@
     <ClInclude Include="GameComponents\resource.h" />
     <ClInclude Include="GameComponents\Sprite.h" />
     <ClInclude Include="Ninja\AttackingState.h" />
+    <ClInclude Include="Ninja\ClimbingState.h" />
     <ClInclude Include="Ninja\CrouchingState.h" />
+    <ClInclude Include="Ninja\FireWheel.h" />
     <ClInclude Include="Ninja\IdleState.h" />
     <ClInclude Include="Ninja\JumpingState.h" />
+    <ClInclude Include="Ninja\JumpSlash.h" />
     <ClInclude Include="Ninja\Knife.h" />
     <ClInclude Include="Ninja\Ninja.h" />
     <ClInclude Include="Ninja\State.h" />
     <ClInclude Include="Ninja\Subweapon.h" />
+    <ClInclude Include="Ninja\ThrowingShuriken.h" />
     <ClInclude Include="Ninja\ThrowingState.h" />
     <ClInclude Include="Ninja\WalkingState.h" />
     <ClInclude Include="Ninja\Whip.h" />
     <ClInclude Include="GameComponents\TiledMap.h" />
     <ClInclude Include="GameComponents\Viewport.h" />
+    <ClInclude Include="Ninja\WindmillShuriken.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{ABCACA7B-2579-4E1C-AC64-3E7DE7ACF882}</ProjectGuid>
     <RootNamespace>NinjaGaiden</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

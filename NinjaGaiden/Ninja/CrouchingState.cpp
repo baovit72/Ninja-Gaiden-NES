@@ -20,7 +20,7 @@ void CrouchingState::Walk()
 }
 void CrouchingState::Throw()
 {
-	ninja->SetState(ninja->GetThrowingState());
+	 
 }
 void CrouchingState::Jump()
 {

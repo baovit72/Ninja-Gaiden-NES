@@ -22,6 +22,9 @@
     <Filter Include="Source Files\Ninja\States">
       <UniqueIdentifier>{d05c021e-6a04-459c-abdd-a3794d0f253c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Ninja\Weapons">
+      <UniqueIdentifier>{f1bd0f63-7ca5-42c4-bdd8-038f80f76871}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameComponents\Animation.cpp">
@@ -45,18 +48,6 @@
     <ClCompile Include="GameComponents\Sprite.cpp">
       <Filter>Source Files\GameComponents</Filter>
     </ClCompile>
-    <ClCompile Include="Ninja\Knife.cpp">
-      <Filter>Source Files\Ninja</Filter>
-    </ClCompile>
-    <ClCompile Include="Ninja\Subweapon.cpp">
-      <Filter>Source Files\Ninja</Filter>
-    </ClCompile>
-    <ClCompile Include="Ninja\ThrowingState.cpp">
-      <Filter>Source Files\Ninja</Filter>
-    </ClCompile>
-    <ClCompile Include="Ninja\Whip.cpp">
-      <Filter>Source Files\Ninja</Filter>
-    </ClCompile>
     <ClCompile Include="Ninja\AttackingState.cpp">
       <Filter>Source Files\Ninja\States</Filter>
     </ClCompile>
@@ -68,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="Ninja\JumpingState.cpp">
       <Filter>Source Files\Ninja\States</Filter>
-    </ClCompile>
-    <ClCompile Include="Ninja\State.cpp">
-      <Filter>Source Files\Ninja</Filter>
     </ClCompile>
     <ClCompile Include="Ninja\WalkingState.cpp">
       <Filter>Source Files\Ninja\States</Filter>
@@ -92,6 +80,36 @@
     </ClCompile>
     <ClCompile Include="GameComponents\Cell.cpp">
       <Filter>Source Files\GameComponents</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\ClimbingState.cpp">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\ThrowingState.cpp">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\Knife.cpp">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\State.cpp">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\Subweapon.cpp">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\Whip.cpp">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\ThrowingShuriken.cpp">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\WindmillShuriken.cpp">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\FireWheel.cpp">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClCompile>
+    <ClCompile Include="Ninja\JumpSlash.cpp">
+      <Filter>Source Files\Ninja\Weapons</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -122,18 +140,6 @@
     <ClInclude Include="GameComponents\Sprite.h">
       <Filter>Source Files\GameComponents</Filter>
     </ClInclude>
-    <ClInclude Include="Ninja\Knife.h">
-      <Filter>Source Files\Ninja</Filter>
-    </ClInclude>
-    <ClInclude Include="Ninja\Subweapon.h">
-      <Filter>Source Files\Ninja</Filter>
-    </ClInclude>
-    <ClInclude Include="Ninja\ThrowingState.h">
-      <Filter>Source Files\Ninja</Filter>
-    </ClInclude>
-    <ClInclude Include="Ninja\Whip.h">
-      <Filter>Source Files\Ninja</Filter>
-    </ClInclude>
     <ClInclude Include="Ninja\AttackingState.h">
       <Filter>Source Files\Ninja\States</Filter>
     </ClInclude>
@@ -145,9 +151,6 @@
     </ClInclude>
     <ClInclude Include="Ninja\JumpingState.h">
       <Filter>Source Files\Ninja\States</Filter>
-    </ClInclude>
-    <ClInclude Include="Ninja\State.h">
-      <Filter>Source Files\Ninja</Filter>
     </ClInclude>
     <ClInclude Include="Ninja\WalkingState.h">
       <Filter>Source Files\Ninja\States</Filter>
@@ -166,6 +169,36 @@
     </ClInclude>
     <ClInclude Include="GameComponents\Grid.h">
       <Filter>Source Files\GameComponents</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\ClimbingState.h">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\ThrowingState.h">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\Knife.h">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\State.h">
+      <Filter>Source Files\Ninja\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\Subweapon.h">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\Whip.h">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\ThrowingShuriken.h">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\WindmillShuriken.h">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\FireWheel.h">
+      <Filter>Source Files\Ninja\Weapons</Filter>
+    </ClInclude>
+    <ClInclude Include="Ninja\JumpSlash.h">
+      <Filter>Source Files\Ninja\Weapons</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

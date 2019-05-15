@@ -2,18 +2,25 @@
 
 #include "GameObject.h"
 
+#include "Constants.h"
+
 #include "Whip.h"
 #include "Knife.h"
-
+#include"ThrowingShuriken.h"
 #include "IdleState.h"
 #include "WalkingState.h"
 #include "JumpingState.h"
 #include "CrouchingState.h"
 #include "AttackingState.h"
 #include "ThrowingState.h"
-
-#include "Constants.h"
+#include"WindmillShuriken.h"
+#include"FireWheel.h"
+#include"JumpSlash.h"
 class State;
+class Whip;
+ 
+
+
 class Ninja : public GameObject
 {
 	Ninja();
@@ -45,7 +52,7 @@ public:
 	void SetIsCrouching(bool isCrouching) { this->isCrouching = isCrouching; }
 	void SetLastFrameTime(DWORD lastFrameTime) { this->lastFrameTime = lastFrameTime; }
 	void SetState(State * state);
-	void SetWhip(int type) { this->whip->SetType(type); }
+	void SetSubweapon(int type);
 	//Hàm get
 	static Ninja * GetInstance();
 
@@ -60,6 +67,7 @@ public:
 	State * GetJumpingState();
 
 	Whip * GetWhip() { return this->whip; }
+
 	//Hàm trạng thái
 	bool IsAttacking() { return state == attackingState || state == throwingState; }
 	bool IsGrounded() { return isGrounded; }
@@ -68,6 +76,7 @@ public:
 	bool IsFlipped() { isFlipped = isLeft ? true : false; return isFlipped; }
 
 	vector<Animation *> GetAnimationsList() { return animations; }
+
 	//Các hàm hành động nhân vật
 	void Idle();
 	void Attack();
@@ -83,5 +92,8 @@ public:
 	void Update(DWORD dt) override;
 	//Hàm render
 	void Render() override;
+
+	//Reset subweapons
+	void ResetSubweapons() { subweapons = vector<Subweapon*>(); }
 };
 

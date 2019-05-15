@@ -1,13 +1,11 @@
 #pragma once
 #include "State.h"
 #include "Ninja.h"
-
-class ThrowingState : public State
+class ClimbingState :
+	public State
 {
-private:
-	 
 public:
-	ThrowingState(Ninja * ninja);
+	ClimbingState(Ninja * ninja);
 	void Idle();
 	void Attack();
 	void Walk();
@@ -16,6 +14,5 @@ public:
 	void Crouch();
 	void Update(DWORD dt);
 	void Render();
+	~ClimbingState() {};
 };
-
-

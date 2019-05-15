@@ -1,4 +1,4 @@
-#include "ThrowingState.h"
+﻿#include "ThrowingState.h"
 
 ThrowingState::ThrowingState(Ninja * ninja)
 {
@@ -46,30 +46,16 @@ void ThrowingState::Render()
 	spriteData.y = ninja->GetPositionY();
 	spriteData.scale = 1;
 	spriteData.angle = 0;
-	spriteData.isLeft = ninja->IsLeft();
+	spriteData.isFlipped = ninja->IsFlipped();
+	 
+	ninja->GetAnimationsList()[NINJA_ANI_THROWING]->Render(spriteData);
 
-	if (ninja->IsCrouching())
-	{
-		ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Render(spriteData);
-
-		if (ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->IsDone())
-		{
-			ninja->CreateThrownWeapon();
-			ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Reset();
-			ninja->SetIsCrouching(true);
-			ninja->SetState(ninja->GetCrouchingState());
-		}
+	if (ninja->GetAnimationsList()[NINJA_ANI_THROWING]->IsDone())
+	{ 
+		ninja->CreateThrownWeapon();
+		ninja->GetAnimationsList()[NINJA_ANI_THROWING]->Reset();
+		ninja->SetState(ninja->GetIdleState());
+		 
 	}
-	else
-	{
-		ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Render(spriteData);
 
-		if (ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->IsDone())
-		{
-			ninja->CreateThrownWeapon();
-			ninja->GetAnimationsList()[NINJA_ANI_STANDING_ATTACKING]->Reset();
-			ninja->GetWhip()->ResetAnim();
-			ninja->SetState(ninja->GetIdleState());
-		}
-	}
 }

@@ -2,9 +2,7 @@
 
 void Subweapon::SetThrownPosition(float x, float y, bool isCrouching)
 {
-	this->x = (isLeft ? x : x + 20);
-	if (isCrouching)
-		this->y = y + 15 + 16.5f;
-	else
-		this->y = y + 15;
+	this->x = (isLeft ? x-10 : x + 20); 
+	this->y = y - 5;
+	
 }

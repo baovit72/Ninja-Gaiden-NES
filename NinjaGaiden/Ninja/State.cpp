@@ -60,6 +60,13 @@ void State::Update(DWORD dt)
 		ninja->SetPositionY(100);
 		Viewport::GetInstance()->ResetPosition();
 	}
+
+	//Cập nhật Subweapons
+
+	vector<Subweapon *> subweapons = ninja->GetSubweapon();
+	for (int i = 0; i < subweapons.size(); i++) {
+		subweapons.at(i)->Update(dt);
+	}
 	/*TiledMap * tiledMap = Game::GetInstance()->GetTiledMap();
 	vector<GameObject *> solidTiles = tiledMap->GetSolidTiles();
 	float normalx, normaly;
@@ -119,13 +126,12 @@ void State::Update(DWORD dt)
 
 void State::Render()
 {
-	vector <Subweapon *> subweapons = ninja->GetSubweapon();
-	if (subweapons.size() > 0)
-	{
-		for (int i = 0; i < subweapons.size(); i++)
-		{
-			SpriteData spriteData;
-			subweapons[i]->Render(spriteData);
-		}
+	vector<Subweapon *> subweapons = ninja->GetSubweapon();
+	for (int i = 0; i < subweapons.size(); i++) {
+		Subweapon *subweapon = subweapons.at(i);
+		//Jump slash thực hiện lúc nhảy
+		if (subweapon->getType() == SUBWEAPON_JUMPSLASH)
+			continue;
+		subweapon->Render();
 	}
 }

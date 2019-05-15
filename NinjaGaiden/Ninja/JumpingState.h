@@ -4,6 +4,8 @@
 
 class JumpingState : public State
 {
+private:
+	Subweapon *JumpnSlash = NULL;
 public:
 	JumpingState(Ninja * ninja);
 	void Idle();
@@ -12,6 +14,6 @@ public:
 	void Throw();
 	void Jump();
 	void Crouch();
-	void Update(DWORD dt);
+	void Update(DWORD dt); 
 	void Render();
 };

@@ -16,7 +16,7 @@ public:
 	//Hàm cập nhật
 	void Update(DWORD dt) override;
 	//Hàm render
-	void Render(SpriteData spriteData) override;
+	void Render() override;
 	~Knife();
 };
 

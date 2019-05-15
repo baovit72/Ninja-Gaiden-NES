@@ -17,7 +17,7 @@ void AttackingState::Attack()
 }
 void AttackingState::Walk()
 {
-	
+
 }
 void AttackingState::Throw()
 {
@@ -50,11 +50,16 @@ void AttackingState::Render()
 	spriteData.isLeft = ninja->IsLeft();
 	spriteData.isFlipped = ninja->IsFlipped();
 
-	ninja->GetWhip()->SetPosition(ninja->GetPositionX(), ninja->GetPositionY(), ninja->IsCrouching());
+	//Render Whip
+	
+	ninja->GetWhip()->Render();
+
+
 	if (ninja->IsCrouching())
 	{
 		ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->Render(spriteData);
 		//ninja->GetWhip()->Render(spriteData);
+
 
 		if (ninja->GetAnimationsList()[NINJA_ANI_CROUCHING_ATTACKING]->IsDone())
 		{
